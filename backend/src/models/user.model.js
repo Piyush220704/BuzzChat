@@ -26,7 +26,7 @@ const userSchema = new Schema({
         type: String,
         default: ''
     }
-    }, {timeseries: true}
+    }, {timestamps: true}
 );
 
 const User = model('User', userSchema);
