@@ -1,7 +1,7 @@
-const getRandomImageUrl = () => {
-  const randomId = Math.floor(Math.random() * 1000);
-  return `https://picsum.photos/seed/${randomId}/200`;
-};
+// const getRandomImageUrl = () => {
+//   const randomId = Math.floor(Math.random() * 1000);
+//   return `https://picsum.photos/seed/${randomId}/200`;
+// };
 
 
 const AuthImagePattern = ({ title, subtitle }) => {
@@ -15,11 +15,11 @@ const AuthImagePattern = ({ title, subtitle }) => {
                 className={`aspect-square rounded-2xl bg-primary/10 ${
                   i % 2 === 0 ? "animate-pulse" : ""
                 }`}
-                style={{
-                  backgroundImage: `url(${getRandomImageUrl()})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                }}
+                // style={{
+                //   backgroundImage: `url(${getRandomImageUrl()})`,
+                //   backgroundSize: "cover",
+                //   backgroundPosition: "center",
+                // }}
                 
               />
             ))}
