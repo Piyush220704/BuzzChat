@@ -10,10 +10,10 @@ import cors from 'cors'
 import messageRoutes from './routes/message.route.js'
 
 app.use(cors({
-    origin: "http://localhost:5713",
+    origin: "http://localhost:5173",
     credentials: true,
     allowedHeaders: ['Content-Type', 'Authorization']  // allow all headers for cors request
-}))
+}));
 app.use(cookieParser());
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({ extended: true}));
