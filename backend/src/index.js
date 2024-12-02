@@ -21,7 +21,7 @@ app.use(express.json({limit: '50mb'}));
 
 
 app.use('/api/auth', authRoutes);
-app.use('/api/message', messageRoutes);
+app.use('/api/messages', messageRoutes);
 
 
 app.listen(process.env.PORT, ()=>{

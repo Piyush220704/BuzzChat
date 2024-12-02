@@ -1,15 +1,16 @@
 import User from '../models/user.model.js';
-import {Message} from '../models/message.model.js';
+import Message from '../models/message.model.js';
+import cloudinary from "../lib/cloudinary.js";
 
 export const getUsersForSidebar = async (req, res) => { //get all users for sidebar except me
     try{
         const loggedInUserId = req.user._id;
         const filterdUser = await User.find({_id: {$ne:loggedInUserId}}).select("-password")
 
-        res.status(200).json({filterdUser});
+        res.status(200).json(filterdUser);
     }catch(error){
         console.log("error in getUsersForSidebar ", error.message);
-        res.status(500).json({message: "internal server error"});
+        res.status(500).json({error: "internal server error"});
     }
 }
 
@@ -23,10 +24,10 @@ export const getMessages = async (req, res) => { //get all the chats between two
                 {senderId: userToChatId , receiverId: myId}
             ]
         })
-        res.status(200).json({messages});
+        res.status(200).json(messages);
     }catch(error){
         console.log("error in getMessages ", error.message);
-        res.status(500).json({message: "internal server error"});
+        res.status(500).json({error: "internal server error"});
     }
 }
 
@@ -49,11 +50,12 @@ export const sendMessage = async (req, res) => {  //send a message to a user
             image: imageUrl,
         });
 
-        await newMessage.save();
 
+        await newMessage.save();
+        console.log(newMessage);
         res.status(201).json(newMessage);
     } catch (error) {
         console.log("error in sendMessage ", error.message);
-        res.status(500).json({ message: "internal server error" });
+        res.status(500).json({ error: "internal server error" });
     }
 }
