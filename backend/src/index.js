@@ -1,13 +1,15 @@
 import express from "express";
-const app = express();
 import {connectDB} from "./lib/db.js";
 import dotenv from 'dotenv';
-dotenv.config();
 import bodyParser from 'body-parser';
 import authRoutes from './routes/auth.route.js'
 import cookieParser from 'cookie-parser';
 import cors from 'cors'
 import messageRoutes from './routes/message.route.js'
+import {app, server, io} from './lib/socket.js';
+
+
+dotenv.config();
 
 app.use(cors({
     origin: "http://localhost:5173",
@@ -24,7 +26,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/messages', messageRoutes);
 
 
-app.listen(process.env.PORT, ()=>{
+server.listen(process.env.PORT, ()=>{
     connectDB();
     console.log('Server is running on port 5001');
 })

@@ -1,6 +1,7 @@
 import User from '../models/user.model.js';
 import Message from '../models/message.model.js';
 import cloudinary from "../lib/cloudinary.js";
+import { getReceiverSocketId, io } from '../lib/socket.js';
 
 export const getUsersForSidebar = async (req, res) => { //get all users for sidebar except me
     try{
@@ -52,7 +53,11 @@ export const sendMessage = async (req, res) => {  //send a message to a user
 
 
         await newMessage.save();
-        console.log(newMessage);
+
+        const receiverSocketId = getReceiverSocketId(receiverId);
+        if(receiverSocketId){
+            io.to(receiverSocketId).emit("new message", newMessage);
+        }
         res.status(201).json(newMessage);
     } catch (error) {
         console.log("error in sendMessage ", error.message);
