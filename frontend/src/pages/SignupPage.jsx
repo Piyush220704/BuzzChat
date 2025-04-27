@@ -65,7 +65,7 @@ const SignupPage = () => {
                   <input
                     type="text"
                     className={`input input-bordered w-full pl-10`}
-                    placeholder="Rahul Rajput"
+                    placeholder="Full Name"
                     value={formData.fullName}
                     onChange={(e) =>
                       setFormData({ ...formData, fullName: e.target.value })
